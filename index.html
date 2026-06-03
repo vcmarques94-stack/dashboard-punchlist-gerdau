@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Executivo de Punch List | Pipelines Gerdau</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-content">
+        <span class="eyebrow">UTM II | Alvarez & Marsal</span>
+        <h1>PIPELINES GERDAU</h1>
+        <p>Dashboard Executivo de Punch List</p>
+      </div>
+
+      <div class="header-badge">
+        <span>Pendências Totais</span>
+        <strong id="badgeTotal">0</strong>
+      </div>
+    </header>
+
+    <section class="filters">
+      <select id="filtroLocal">
+        <option value="Todos">Local</option>
+      </select>
+
+      <select id="filtroKM">
+        <option value="Todos">KM / Região</option>
+      </select>
+
+      <select id="filtroStatus">
+        <option value="Todos">Status</option>
+      </select>
+
+      <select id="filtroCategoria">
+        <option value="Todos">Categoria</option>
+      </select>
+
+      <select id="filtroEscopo">
+        <option value="Todos">Escopo</option>
+      </select>
+    </section>
+
+    <section class="cards">
+      <div class="card card-total">
+        <span>Total Punch List</span>
+        <strong id="totalPunchList">0</strong>
+        <small>Base completa filtrada</small>
+      </div>
+
+      <div class="card card-success">
+        <span>Concluídas</span>
+        <strong id="totalConcluidas">0</strong>
+        <small>Itens encerrados</small>
+      </div>
+
+      <div class="card card-primary">
+        <span>Backlog Empreiteira</span>
+        <strong id="totalBacklogEmpreiteira">0</strong>
+        <small id="hintEmpreiteira">Pendentes em executar</small>
+      </div>
+
+      <div class="card card-scope">
+        <span>Fora Escopo</span>
+        <strong id="totalForaEscopo">0</strong>
+        <small>Fora da empreiteira</small>
+      </div>
+
+      <div class="card card-warning">
+        <span>Aguardando Definição</span>
+        <strong id="totalAguardandoDefinicao">0</strong>
+        <small>Decisão pendente</small>
+      </div>
+    </section>
+
+    <section class="charts">
+      <div class="panel chart-panel">
+        <div class="panel-title">
+          <h2>Responsabilidade das Pendências</h2>
+          <span>Classificação de escopo</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="graficoResponsabilidade"></canvas>
+        </div>
+      </div>
+
+      <div class="panel chart-panel">
+        <div class="panel-title">
+          <h2>Status das Pendências</h2>
+          <span>Situação atual da base</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="graficoStatus"></canvas>
+        </div>
+      </div>
+
+      <div class="panel chart-panel">
+        <div class="panel-title">
+          <h2>Backlog por Categoria</h2>
+          <span>Pendências abertas</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="graficoCategoria"></canvas>
+        </div>
+      </div>
+
+      <div class="panel chart-panel">
+        <div class="panel-title">
+          <h2>Distribuição dos Términos Informados</h2>
+          <span>Planejamento informado pela contratada</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="graficoTerminos"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="panel table-panel">
+        <div class="panel-title table-title">
+          <div>
+            <h2>Base Executiva da Punch List</h2>
+            <span>Itens filtrados conforme seleção acima</span>
+          </div>
+
+          <button id="limparFiltros" type="button">Limpar filtros</button>
+        </div>
+
+        <div class="table-container">
+          <table id="tabelaPendencias">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Local</th>
+                <th>KM</th>
+                <th>Estaca</th>
+                <th>Categoria</th>
+                <th>Pendência</th>
+                <th>Status</th>
+                <th>Escopo</th>
+                <th>Término</th>
+                <th>Status Executivo</th>
+              </tr>
+            </thead>
+
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
