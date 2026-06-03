@@ -669,3 +669,23 @@ function escapeHTML(valor) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
+function atualizarDataDashboard() {
+
+    const agora = new Date();
+
+    const dataHora =
+        agora.toLocaleDateString('pt-BR') +
+        ' às ' +
+        agora.toLocaleTimeString('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+    const elemento = document.getElementById('ultimaAtualizacao');
+
+    if (elemento) {
+        elemento.innerText = dataHora;
+    }
+}
+
+window.addEventListener('load', atualizarDataDashboard);
