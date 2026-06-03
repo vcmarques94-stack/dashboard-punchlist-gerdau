@@ -409,3 +409,11 @@ tbody tr:hover {
     align-items: flex-start;
   }
 }
+.subinfo {
+  margin: 4px 0 0 0;
+  color: #9fb6d4;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  line-height: 1.3;
+}
