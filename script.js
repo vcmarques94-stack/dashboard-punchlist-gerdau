@@ -454,12 +454,38 @@ function opcoesDonut() {
           font: {
             size: 12,
             weight: "bold"
+          },
+          generateLabels: function(chart) {
+            const data = chart.data;
+            const dataset = data.datasets[0];
+            const total = dataset.data.reduce((acc, value) => acc + Number(value || 0), 0);
+
+            return data.labels.map((label, index) => {
+              const valor = Number(dataset.data[index] || 0);
+              const percentual = total > 0 ? ((valor / total) * 100).toFixed(1) : "0.0";
+
+              return {
+                text: `${label} - ${valor} (${percentual}%)`,
+                fillStyle: dataset.backgroundColor[index],
+                strokeStyle: dataset.backgroundColor[index],
+                lineWidth: 1,
+                hidden: false,
+                index: index
+              };
+            });
           }
         }
       },
       tooltip: {
         callbacks: {
-          label: ctx => ` ${ctx.label}: ${ctx.raw}`
+          label: function(ctx) {
+            const dataset = ctx.dataset;
+            const total = dataset.data.reduce((acc, value) => acc + Number(value || 0), 0);
+            const valor = Number(ctx.raw || 0);
+            const percentual = total > 0 ? ((valor / total) * 100).toFixed(1) : "0.0";
+
+            return ` ${ctx.label}: ${valor} (${percentual}%)`;
+          }
         }
       }
     }
