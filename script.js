@@ -468,6 +468,8 @@ function opcoesDonut() {
                 text: `${label} - ${valor} (${percentual}%)`,
                 fillStyle: dataset.backgroundColor[index],
                 strokeStyle: dataset.backgroundColor[index],
+                color: "#ffffff",
+                fontColor: "#ffffff",
                 lineWidth: 1,
                 hidden: false,
                 index: index
