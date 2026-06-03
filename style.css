@@ -410,9 +410,11 @@ tbody tr:hover {
   }
 }
 .subinfo {
-    margin-top: 12px;
-    font-size: 11px;
-    color: rgba(159,182,212,0.65);
-    font-weight: 400;
-    letter-spacing: 0.3px;
+  margin-top: 12px !important;
+  margin-bottom: 0 !important;
+  font-size: 11px !important;
+  color: rgba(159, 182, 212, 0.65) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.3px !important;
+  line-height: 1.25 !important;
 }
