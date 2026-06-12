@@ -11,6 +11,7 @@ const COL = {
   status: "Status",
   terminoPrev: "Termino_Prev",
   statusPrazo: "Status_Prazo",
+  impeditivoOperacao: "Impeditivo Operação",
   classificacaoEscopo: "Classificacao_Escopo",
   exibirDashboard: "Exibir_Dashboard",
   pendencia: "Pendência",
@@ -36,7 +37,7 @@ const CORES = {
 document.addEventListener("DOMContentLoaded", () => {
   carregarDados();
 
-  ["filtroLocal", "filtroKM", "filtroStatus", "filtroCategoria", "filtroEscopo"].forEach(id => {
+  ["filtroLocal", "filtroKM", "filtroStatus", "filtroCategoria", "filtroEscopo", "filtroImpeditivo"].forEach(id => {
     document.getElementById(id).addEventListener("change", atualizarDashboard);
   });
 
@@ -163,6 +164,7 @@ function preencherFiltros() {
   preencherFiltro("filtroStatus", dados.map(d => d[COL.status]), "Status");
   preencherFiltro("filtroCategoria", dados.map(d => d[COL.categoria]), "Categoria");
   preencherFiltro("filtroEscopo", dados.map(d => d[COL.classificacaoEscopo]), "Escopo");
+  preencherFiltro("filtroImpeditivo", dados.map(d => d[COL.impeditivoOperacao]), "Impeditivo Operação");
 }
 
 function preencherFiltro(id, valores, label) {
@@ -192,7 +194,7 @@ function preencherFiltro(id, valores, label) {
 }
 
 function limparFiltros() {
-  ["filtroLocal", "filtroKM", "filtroStatus", "filtroCategoria", "filtroEscopo"].forEach(id => {
+  ["filtroLocal", "filtroKM", "filtroStatus", "filtroCategoria", "filtroEscopo", "filtroImpeditivo"].forEach(id => {
     document.getElementById(id).value = "Todos";
   });
 
@@ -205,6 +207,7 @@ function atualizarDashboard() {
   const status = document.getElementById("filtroStatus").value;
   const categoria = document.getElementById("filtroCategoria").value;
   const escopo = document.getElementById("filtroEscopo").value;
+  const impeditivo = document.getElementById("filtroImpeditivo").value;
 
   const dadosFiltrados = dados.filter(d => {
     return (
@@ -212,7 +215,8 @@ function atualizarDashboard() {
       (km === "Todos" || d[COL.km] === km) &&
       (status === "Todos" || d[COL.status] === status) &&
       (categoria === "Todos" || d[COL.categoria] === categoria) &&
-      (escopo === "Todos" || d[COL.classificacaoEscopo] === escopo)
+      (escopo === "Todos" || d[COL.classificacaoEscopo] === escopo) &&
+      (impeditivo === "Todos" || d[COL.impeditivoOperacao] === impeditivo)
     );
   });
 
