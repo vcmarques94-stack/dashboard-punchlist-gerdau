@@ -244,12 +244,17 @@ function atualizarKPIs(lista) {
     normalizar(d[COL.classificacaoEscopo]) === "aguardando definicao"
   ).length;
 
+  const impeditivosOperacao = lista.filter(d =>
+  normalizar(d[COL.impeditivoOperacao]) === "sim"
+).length;
+
   document.getElementById("badgeTotal").innerText = total;
   document.getElementById("totalPunchList").innerText = total;
   document.getElementById("totalConcluidas").innerText = concluidas;
   document.getElementById("totalBacklogEmpreiteira").innerText = backlogEmpreiteira;
   document.getElementById("totalForaEscopo").innerText = foraEscopo;
   document.getElementById("totalAguardandoDefinicao").innerText = aguardandoDefinicao;
+  document.getElementById("totalImpeditivoOperacao").innerText = impeditivosOperacao;
   document.getElementById("hintEmpreiteira").innerText = `${totalEscopoEmpreiteira} itens no escopo da empreiteira`;
 }
 
