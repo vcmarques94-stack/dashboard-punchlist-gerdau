@@ -37,7 +37,7 @@ const CORES = {
 document.addEventListener("DOMContentLoaded", () => {
   carregarDados();
 
-  ["filtroLocal", "filtroKM", "filtroStatus", "filtroCategoria", "filtroEscopo", "filtroImpeditivo", "filtroResponsavel].forEach(id => {
+  ["filtroLocal", "filtroKM", "filtroStatus", "filtroCategoria", "filtroEscopo", "filtroImpeditivo", "filtroResponsavel"].forEach(id => {
     document.getElementById(id).addEventListener("change", atualizarDashboard);
   });
 
