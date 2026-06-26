@@ -37,7 +37,7 @@ const CORES = {
 document.addEventListener("DOMContentLoaded", () => {
   carregarDados();
 
-  ["filtroLocal", "filtroKM", "filtroStatus", "filtroCategoria", "filtroEscopo", "filtroImpeditivo"].forEach(id => {
+  ["filtroLocal", "filtroKM", "filtroStatus", "filtroCategoria", "filtroEscopo", "filtroImpeditivo", "filtroResponsavel].forEach(id => {
     document.getElementById(id).addEventListener("change", atualizarDashboard);
   });
 
@@ -165,6 +165,7 @@ function preencherFiltros() {
   preencherFiltro("filtroCategoria", dados.map(d => d[COL.categoria]), "Categoria");
   preencherFiltro("filtroEscopo", dados.map(d => d[COL.classificacaoEscopo]), "Escopo");
   preencherFiltro("filtroImpeditivo", dados.map(d => d[COL.impeditivoOperacao]), "Impeditivo Operação");
+  preencherFiltro("filtroResponsavel", dados.map(d => d[COL.responsavel]), "Responsável");
 }
 
 function preencherFiltro(id, valores, label) {
@@ -194,7 +195,7 @@ function preencherFiltro(id, valores, label) {
 }
 
 function limparFiltros() {
-  ["filtroLocal", "filtroKM", "filtroStatus", "filtroCategoria", "filtroEscopo", "filtroImpeditivo"].forEach(id => {
+  ["filtroLocal", "filtroKM", "filtroStatus", "filtroCategoria", "filtroEscopo", "filtroImpeditivo", "filtroResponsavel"].forEach(id => {
     document.getElementById(id).value = "Todos";
   });
 
@@ -208,6 +209,7 @@ function atualizarDashboard() {
   const categoria = document.getElementById("filtroCategoria").value;
   const escopo = document.getElementById("filtroEscopo").value;
   const impeditivo = document.getElementById("filtroImpeditivo").value;
+  const responsavel = document.getElementById("filtroResponsavel").value;
 
   const dadosFiltrados = dados.filter(d => {
     return (
@@ -216,7 +218,8 @@ function atualizarDashboard() {
       (status === "Todos" || d[COL.status] === status) &&
       (categoria === "Todos" || d[COL.categoria] === categoria) &&
       (escopo === "Todos" || d[COL.classificacaoEscopo] === escopo) &&
-      (impeditivo === "Todos" || d[COL.impeditivoOperacao] === impeditivo)
+      (impeditivo === "Todos" || d[COL.impeditivoOperacao] === impeditivo)&&
+      (responsavel === "Todos" || d[COL.responsavel] === responsavel)
     );
   });
 
@@ -280,6 +283,7 @@ function atualizarTabela(lista) {
       <td>${escapeHTML(d[COL.km])}</td>
       <td>${escapeHTML(d[COL.estaca])}</td>
       <td>${escapeHTML(d[COL.categoria])}</td>
+      <td>${escapeHTML(d[COL.responsavel])}</td>
       <td>${escapeHTML(d[COL.pendencia])}</td>
       <td>${criarBadgeStatus(d[COL.status])}</td>
       <td>${criarBadgeEscopo(d[COL.classificacaoEscopo])}</td>
